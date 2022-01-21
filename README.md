@@ -1,13 +1,5 @@
 # <기술면접 정리>
 
-## **Web & JS 정리**
-
-1. https://sunnykim91.tistory.com/121
-2. https://realmojo.tistory.com/300
-3. https://joshua1988.github.io/web-development/interview/frontend-questions/
-4. https://github.com/JaeYeopHan/Interview_Question_for_Beginner
-5. https://github.com/yangshun/front-end-interview-handbook/blob/master/contents/kr/README.md
-
 ## **React정리**
 
 1. https://velog.io/@dojunggeun/React-interview-questions-15
@@ -35,9 +27,26 @@
 5. DIP(Dependency Inversion Principle) : 의존 역전 원칙
    고수준 모듈은 저수준 모듈의 구현에 의존해서는 안된다.
 
+### **OOP의 특징**
+
+1. 상속 : 클래스개념에서 하위 클래스가 상위 클래스의 메소드나 변수를 사용할 수 있는것
+
+2. 다형성 : 같은 함수가 있어도 그 함수는 매개변수에 따라 다른 역할을 할 수 있다.
+
+3. 캡술화 : 하나의 객체에 그 객체가 특정한 목정을 위해 필요한 변수나 메소드를 하나로 묶는 것. 이는 외부에서 데이터를 쉽게 접근할 수 없게 은닉해준다.
+
+4. 추상화 : 공통적인 속성이나 기능을 묶어서 이름을 붙인다.
+
+### **Overriding && Overloading**
+
+1. Overriding은 부모 클래스에서 상속받은 자식 클래스에서 부모클래스의 메소드를 재정의해서 사용
+
+2. Overloading은 같은 이름의 메소드를 사용하지만 각각 다른 용도로 사용하는것
+
 ## **함수형 프로그래밍(Functional Programming)**
 
 함수형 프로그래밍이란 유지보수가 용이한 소프트웨어를 만들기 위해 함수를 사용하는 것을 의미한다.
+이는 순수함수와 보조 함수의 조합을 통해 로직내에 존재하는 조건문과 반복문을 제거하고 복잡성을 해결하려는 프로그램 패러다임이다.
 
 ### **함수형 프로그래밍 특징**
 
