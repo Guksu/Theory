@@ -228,3 +228,7 @@ HTTPS 의 SSL 에서는 공통키 암호화 방식과 공개키 암호화 방식
 
 - 쿠키 : 클라이언트도 모르게 접속되는 사이트에 의하여 설정될 수 있기 때문에 쿠키로 인해 문제가 발생하는 걸 막고자 한 도메인당 20개, 하나의 쿠키 당 4KB로 제한해 둠
 - 세션 : 클라이언트가 접속하면 서버에 의해 생성되므로 개수나 용량 제한 없음
+
+## **CSS in CSS / CSS in JS**
+
+- https://www.samsungsds.com/kr/insights/web_component.html
