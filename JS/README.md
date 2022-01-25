@@ -43,7 +43,7 @@
 
 ## **호이스팅**
 
-- 변수를 선언하고 초기화 했을 때 선언부분이 최상단으로 끌어올려지는 현상
+- 코드가 실행하기 전 변수선언 / 함수선언이 해당 스코프의 최상단으로 끌어 올려지는 현상
 
 ```
 console.log(a)
@@ -96,3 +96,9 @@ consol.log("hi")
 - JSON은 객체를 나타내주는 범용 포맷으로 데이터를 교환하는 목적으로 사용한다.
 - JSON.stringify – 객체 / 배열 / 원시형을 JSON으로 바꿔준다.
 - JSON.parse – JSON을 본래의 값으로 바꿔준다
+
+## **이벤트루프**
+
+- JS 엔진은 Memory Heap(메모리 할당)과 Call Stack(LIFO)으로 구성되어 있으며 JS는 단일 스레드 언어이기 때문에 Call Stack이 하나이다.
+- Callback Queue는 비동기적으로 실행된 콜뱅함수가 보관되는 영역이다. (FIFO)
+- Event Loop는 Call Stack과 Callback Queue의 상태를 체크하여 Call Stack이 빈 상태가 되면 Callback Queue의 첫번째 콜백을 Call Stack으로 넣는다. 이러한 반복적인 행동을 Tick이라 한다.

@@ -36,6 +36,8 @@
 
 ## **React Hooks**
 
+- 함수형 컴포넌트에서 클래스형 컴포넌트 기능을 사용할 수 있게한다.
+
 1. useCallback
 
 - 특정 함수를 재사용하기 위한 hooks
@@ -53,3 +55,27 @@ const memoized = useMemo(()=> sum(),[x,y])
 
 - useCallback(fn,deps)는 useMemo(()=>fn,deps)와 같다.
 - useMemo는 함수를 반환하지 않고 함수의 값만 memoization해서 반환한다. 그러니 useCallbakc은 함수를 memoization해서 반환한다.
+
+3. useEffect
+
+- 컴포넌트가 렌더링될 때마다 특정 작업을 실행할 수 있도록 하는 hook
+- 컴포넌트가 마운트 / 언마운트 / 업데이트 됐을 때 , 특정 작업을 처리할 수 있다.
+- 첫번째 인수로 실행할 콜백함수 , 두번째 인수로 검사하고자 하는 특정 값이 들어간다.
+
+## **key**
+
+- Key는 원소의 변동을 알기 위해 사용된다. key가 없는 경우 가상 DOM을 순차적으로 비교하지만 key가 있으면 이러한 과정을 단축한다.
+
+## **flux**
+
+- MVC패턴의 경우 양방향 데이터흐름이라 규모가 커질수록 복잡해진다. 이러한 문제점 때문에 단방향 데이터 흐름 모델의 아키텍쳐로 flux가 등장했다.
+
+- View => Action => Dispatcher => Store => View 흐름으로 작동한다.
+
+1.  Dispatcher
+
+- 모든 데이터 흐름을 관리한다.
+
+2.  Store
+
+- 애플리케이션의 상태를 저장한다. 모튼 상태 변경은 스토어에 의해 결정된다.
