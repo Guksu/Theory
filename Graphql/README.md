@@ -14,6 +14,7 @@ type Human{
 
 - 하나의 Endpoint가 존재한다. 이는 한번의 네트워크 호출로 언더페칭이 해결된다.
 - REST API는 Endpoint마다 SQL쿼리가 달라지지만 Grahqpl은 스키마타입마다 SQL쿼리가 달라진다.
+- REST API는 요청이 단순하지만 데이터응답이 복잡하지만 Graphql은 그 반대이다.
 
 ## **N+1문제**
 

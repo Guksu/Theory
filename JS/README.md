@@ -33,7 +33,7 @@
 
 ## **실행 컨텍스트(Execution Context)**
 
-- JS코드들이 실행되기 위한 환경이다. 전역 컨텍스트 / 함수 컨텍스트가 존재한다.
+- JS코드들이 실행되기 위한 환경이다. 전역 컨텍스트(전역 스코프) / 함수 컨텍스트(지역 스코프)가 존재한다.
 
 - 전역 컨텍스트가 생성된 뒤 함수를 호출 시 함수 컨텍스트가 생성된다.
 
@@ -102,3 +102,26 @@ consol.log("hi")
 - JS 엔진은 Memory Heap(메모리 할당)과 Call Stack(LIFO)으로 구성되어 있으며 JS는 단일 스레드 언어이기 때문에 Call Stack이 하나이다.
 - Callback Queue는 비동기적으로 실행된 콜뱅함수가 보관되는 영역이다. (FIFO)
 - Event Loop는 Call Stack과 Callback Queue의 상태를 체크하여 Call Stack이 빈 상태가 되면 Callback Queue의 첫번째 콜백을 Call Stack으로 넣는다. 이러한 반복적인 행동을 Tick이라 한다.
+
+## **let / const / var**
+
+- var는 전역 스코프로 저장되어 호이스팅이 발생한다.
+
+```
+console.log(a) // undefined
+var a= a;
+
+console.log(b) // error
+const b = b;
+```
+
+- var는 함수안의 if문과 같이 블록 스코프에서 선언되어도 함수스코프에서도 사용 가능하다
+
+```
+function EX(){
+    if(){
+        var exVar = "EX"
+    }
+    console.log(exVar) // EX
+}
+```
