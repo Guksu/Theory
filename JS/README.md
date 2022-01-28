@@ -125,3 +125,8 @@ function EX(){
     console.log(exVar) // EX
 }
 ```
+
+## **Axios / Fetch**
+
+- Axios는 wide browser에서 지원이되지만 Fetch는 지원되는 모델이 한정되어 있다.
+- Axios는 자동으로 JSON을 변환시켜준다
