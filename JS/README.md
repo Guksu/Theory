@@ -81,11 +81,6 @@ consol.log("hi")
 
 - let / const / 화살표함수 / 클래스 / 프로미스 / 스프레드 연산자
 
-## **inline /inline-block**
-
-- inline은 text크기만큼 공간을 가지며 width / height가 적용이 불가능
-- inline-block은 width / height가 적용되며 기본적으로 text크기만큼 공간을 가진다.
-
 ## **가비지 컬렉션**
 
 - JS는 전역변수나 함수의 지역변수 / 매개변수와 같은 루트들이 도달 가능한 값은 메모리에 저장되지만 루트들이 도달 할 수 없는 값은 메모리에서 삭제된다.
