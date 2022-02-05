@@ -62,11 +62,27 @@ const memoized = useMemo(()=> sum(),[x,y])
 - useCallback(fn,deps)는 useMemo(()=>fn,deps)와 같다.
 - useMemo는 함수를 반환하지 않고 함수의 값만 memoization해서 반환한다. 그러니 useCallbakc은 함수를 memoization해서 반환한다.
 
-3. useEffect
+3. useState
+
+- 비구조화 할당을 사용하여 첫번째 요소는 현재 상태 , 두번쨰 요소는 setter함수로 동작한다.
+- setState는 비동기적으로 작동하기 때문에 setState를 사용하여 상태를 업데이트할 경우 업데이트 된 상태는 즉시 반영되지 않는다. (state변경 -> 리렌더링 -> state반영)
+- 비동기적으로 작동하면 여러 state를 동시에 업데이트해도 한번에 렌더링 후 반영되기 때문에 성능면에서 우수하다.
+- 따라서 업데이트된 state를 즉시 반영하기 위해선 useEffect를 사용한다.
+
+4. useEffect
 
 - 컴포넌트가 렌더링될 때마다 특정 작업을 실행할 수 있도록 하는 hook
 - 컴포넌트가 마운트 / 언마운트 / 업데이트 됐을 때 , 특정 작업을 처리할 수 있다.
 - 첫번째 인수로 실행할 콜백함수 , 두번째 인수로 검사하고자 하는 특정 값이 들어간다.
+- 컴포넌트가 언마운트되기 전이나 업데이트되기 직전에 작업을 수행하고 싶다면 useEffect내부에 cleanup함수를 반환하면된다. 만약 빈 배열을 넣을 경우에는 언마운트될 경우에만 cleanup함수를 호출한다.
+
+```
+useEffect(()=>{
+    return ()=>{
+        console.log("클린업 !")
+    }
+})
+```
 
 ## **key**
 

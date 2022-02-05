@@ -125,3 +125,49 @@ function EX(){
 
 - Axios는 wide browser에서 지원이되지만 Fetch는 지원되는 모델이 한정되어 있다.
 - Axios는 자동으로 JSON을 변환시켜준다
+
+## **프로토타입**
+
+- 간단하게 보면 부모의 유전자라고 생각하면 된다.
+
+```
+function arr(){
+    this.a = 123,
+    this.b = 321
+}
+
+arr.prototype.wow = 3
+
+const arr2 =  new arr()
+console.log(arr2)           // {a:123,b:321}
+console.log(arr2.wow)       // 3
+```
+
+- 위와 같이 부모요소에 프로토타입을 추가할 경우 자식요소도 그 프로토타입을 사용할 수 있다
+- 자식요소에 프로토타입이 없어도 그 부모요소의 프로토타입을 찾기 위해 추적하므로 자식요소에서도 wow를 사용할 수 있다.
+- 예를들어 배열의 map / length함수를 사용가능한 이유도 js의Array의 prototype에 이미 함수들이 설정되어 있기 때문이다.
+
+## **이벤트 버블링**
+
+- 특정 화면 요소에서 이벤트가 발생했을 때 해당 이벤트가 더 사위의 화면 요소들로 전달되어 가는 특성
+
+```
+<body>
+    <div>
+        <button />
+    </div>
+</body>
+```
+
+- button에서 이벤트 발생 -> div전달 -> body 전달
+- stopPropagation()를 사용하여 버블리을 막을 수 있다.
+
+## **이벤트 캡쳐**
+
+- 이벤트 버블링과 반대 방향으로 진행되는 이벤트 전파 방식
+
+```
+target.addEventListener('이벤트', 콜백 함수, {capture:ture});
+```
+
+- 위의 코드로 이벤트 캡쳐를 사용할 수 있다.
