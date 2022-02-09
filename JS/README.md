@@ -100,7 +100,7 @@ consol.log("hi")
 
 ## **let / const / var**
 
-- var는 전역 스코프로 저장되어 호이스팅이 발생한다.
+- var는 함수 스코프로 저장되어 호이스팅이 발생한다.
 
 ```
 console.log(a) // undefined
