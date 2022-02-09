@@ -29,7 +29,7 @@
 - componentWillMount: 컴포넌트가 생성된 후 DOM에 렌더링되기 전에 호출된다.
 - componentDidMount: 처음으로 렌더링이 끝나고 컴포넌트의 DOM 엘리먼트가 사용 가능할 때 호출된다.
 - componentWillReceiveProps: props가 업데이트 될 때 호출된다.
-- shouldComponentUpdate: 새로운 props를 받았을 때 호출되며, 성능 최적화를 위해 리랜더링을 막을 수 있다
+- shouldComponentUpdate: 새로운 props를 받았을 때 호출되며, 성능 최적화를 위해 리랜더링을 막을 수 있다(리렌더링 여부를 결정할 수 있다.)
 - componentWillUpdate: 새로운 props를 받았고 shouldComponentUpdate가 true를 리턴할 때 호출된다.
 - componentDidUpdate: 컴포넌트가 업데이트된 후에 호출된다.
 - componentWillUnmount: 컴포넌트가 DOM에서 제거되기 전에 호출되어 이벤트리스너 등을 정리할 수 있게 해준다.
