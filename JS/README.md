@@ -1,3 +1,8 @@
+### **JS 동작원리**
+
+- https://asfirstalways.tistory.com/362
+- https://sculove.github.io/post/javascriptflow/
+
 ## **렌더링 과정**
 
 1. 사이트에 접속할 경우 DNS(실제 서버가 어디에 있는지 알 고 있는 서버 / Domain Name System)가 연결해준다.

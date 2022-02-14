@@ -32,3 +32,7 @@ flex : 1 1 0
 - auto일 경우 크기는 상대적이지만 0일경우 크기는 절대적으로 결정된다.
   <img src="https://user-images.githubusercontent.com/87972252/152566170-d874f915-8f4a-4497-8684-416a4d33b52a.png"/>
   - 출처:https://d2.naver.com/helloworld/8540176
+
+## **CSS in CSS / CSS in JS**
+
+- https://www.samsungsds.com/kr/insights/web_component.html
