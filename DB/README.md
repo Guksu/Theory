@@ -9,7 +9,9 @@
 - SELECT \* FROM 테이블명 WHERE age >19 AND age <25
 - SELECT \* FROM 테이블명 WHERE age >19 or age <12
 - SELECT \* FROM 테이블명 WHERE age >19 =(SELECT 컬럼명 FROM 테이블명 WHERE NAME LIKE `KIM%` ) / SUB-QUERY
-- SELECT
+  //아래의 두 쿼리는 같은 쿼리문이다.
+- SELECT \* from 테이블명 WHERE age = 19 or age = 20 or age = 21
+- SELECT \* from 테이블명 WHERE age IN(19,20,21)
 
 2. LIKE
 
