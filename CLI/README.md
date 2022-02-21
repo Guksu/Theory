@@ -18,3 +18,12 @@
 
 - npx prisma init
   이 명령은 schema.prisma라는 파일과 프로젝트 루트에 .env 파일을 포함하는 prisma라는 새 디렉토리를 생성한다.
+
+4. 깃저장소
+
+- git init
+- git add README.md
+- git commit -m "first commit"
+- git branch -M main
+- git remote add origin https://github.com/Guksu/asd.git
+- git push -u origin main
