@@ -59,3 +59,59 @@
 
 - 서버에서 js를 모두 다운받아 보여주기 때문에 동적으로 HTML요소들을 생성하고 조작한다.
 - 사용자의 반응에 즉각 대응할 수 있다.
+
+## **NPM이란**
+
+- NodeJS에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소역할을 하며 설치 /관리를 수행할 수 있게해준다.
+- package.json으로 의존성 관리를 해준다. 여기에는 프로젝트에 사용되는 패키지의 이름과 버전을 명시하기 때문에 다른 환경에서도 손쉽게 프로젝트를 구성할 수 있다.
+- devDependencies는 개발에만 필요한 패키지들을 명시한 곳이다.
+- NPM은 패키지를 설치하는 중 코드를 실행시키는 것을 허용하며 의존성까지도 허용하기 때문에 보안의 이슈가 있다.
+- NPX는 패키지를 설치하지 않고 1회성으로 실행하는 명령어
+- NPM은 패키지별로 서브패키지를 따로 이루는 형식이라 각 설치한 패키지들의 독립성이 보장되지만 패키지 중복으로 용량이 커진다.
+
+## **Yarn이란**
+
+- npm의 보안문제를 해결하기 위해 등장하였다.
+- npm은 패키지를 순서대로 설치하지만 yarn은 병렬로 설치하기 때문에 속도가 빠르다.
+- 또한 yarn은 한번 설치한 패키지를 캐싱하기 때문에 재설치의 시간을 줄일 수 있다.
+  (Cache란 자주 사용하는 데이터나 값을 미리 복사해 놓는 임시 장소)
+- yarn은 package.json / yarn.lock에 있는 패키지만 설치하기 때문에 npm에 비해 보안의 장점이 있다.(모든 디바이스에 같은 패키지를 설치)
+- yarn.lock에는 패키지를 최조로 추가할 당시 버전을 명시한 파일이다.
+- 패키지간 공통 패키지를 링크하기 때문에 패키지 중복이 제거되어 용량이 적다.
+
+## **Axios**
+
+1. async / await를 사용하지 않는경우
+
+```
+axios.get('/user?ID=12345').then ~ 혹은
+////
+axios.get('/user', {
+    params: {
+      ID: 12345
+    }
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .then(function () {
+    // 항상 실행되는 영역
+  });
+```
+
+2. async / await를 사용하는 경우
+
+```
+async function getUser() {
+  try {
+    const response = await axios.get('/user?ID=12345');
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
+``
+```
