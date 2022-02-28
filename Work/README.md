@@ -115,3 +115,33 @@ async function getUser() {
 }
 ``
 ```
+
+3. useEffect안에서 사용
+
+- useEffect는 함수를 반환해야하지만 axios에 async awiat를 사용하면 Promise를 반환하기 때문에 직접적으로 useEffect에 사용할 수 없다.
+- 따라서 아래와 같이 사용해야한다.
+
+```
+useEffect(()=>{
+  const fn = async() =>{
+    const res = await axios ~
+  }
+
+  fn()
+},[])
+
+```
+
+- 혹은
+
+```
+const fn = async()=>{
+  const res = await axios ~
+}
+
+useEffect(()=>{
+  fn()
+},[])
+
+
+```
