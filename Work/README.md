@@ -145,3 +145,24 @@ useEffect(()=>{
 
 
 ```
+
+## **Next JS 동적라우팅**
+
+- 대괄호안의 값은 router객체의 query속성으로 들어간다.
+- page/user/[id] 는 user/1로 접근 가능
+- page/user/[id]를 user/abc?test=123으로 접근할 경우엔 query Object는 {"id":abc, "test":123}이다.
+- page/user/[id]/[product]를 user/1/phone으로 접글할 경우 query Object는 {"id":1, "product":phone}이다.
+- page/user/[...param]를 user/1/a/b로 접근할 경우 query Object는 { "param": [1,a,b] }이다/
+- page/user[...param]은 user로 접근할 경우 매칭되지 않지만 page/user[ [...param] ]은 user로 접근해도 매칭된다.
+
+## **리엑트 프레임워크**
+
+1. gatsby
+
+- build시 public폴더에 html을생성하여 ssr을 가능하게한다.
+- 플러그인을 사용하여 사전 렌더링된 html이 생성되기 전에 데이터를 애플리케이션에 추가할 수 있다.
+- 인터렉티브, 정적 웹사이트를 만들때 사용된다. 또한 grphql과 잘 어울린다.
+
+2. remix
+
+- 사용자가 요청 시 서버에서 코드를 실행할 수 있다.
