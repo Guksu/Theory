@@ -155,6 +155,79 @@ useEffect(()=>{
 - page/user/[...param]를 user/1/a/b로 접근할 경우 query Object는 { "param": [1,a,b] }이다/
 - page/user[...param]은 user로 접근할 경우 매칭되지 않지만 page/user[ [...param] ]은 user로 접근해도 매칭된다.
 
+## **getInitialProps / getStaticProps / getStaticPaths / getServerSideProps**
+
+1. getInitialProps
+
+getInitialProps 는 SSR을 위해 사용되는 기능입니다. 그러나 최선버전의 Next.js에서는 getInitialProps사용을 지양하고 있습니다.
+getInitialProps를 사용하면 페이지 구성을 위한 데이터 초기값을 미리 요청하여(이하 Data Fetching) SSR이 가능하게됩니다.
+
+그러나 공통된 Data Fetching을 위해 getInitialProps을 \_app.js에서 사용할 경우엔 Next.js는 자동 정적 최적화 기능이 비활성화되어
+모든 페이지가 SSR로 제공되는 단점이 있습니다. 즉 정적페이지로 구성하길 원하는 페이지도 동적으로 작동하게됩니다.
+
+Next.js는 정적페이지와 동적페이지 모두를 위한 프레임워크를 지향하기 때문에 최신버전에선 getInitialProps지양하고 있습니다.
+
+하지만 getStaticProps 와 getServerSideProps는 전역적인 Data Fetching을 제공하지 않기 때문에 전역적인 Data Fetching을 위해선
+getInitialProps을 사용해야합니다.
+
+2. getStaticProps
+
+getStaticProps는 SSG를 위해 사용되는 기능입니다.
+SSG란 빌드시 페이지를 HTML문서로 생성하여 모든 클라이언트측에 동일한 페이지를 보여주는 방식입니다.
+따라서 데이터변화가 거의없는 페이지에 주로 활용됩니다.
+
+getStaticProps를 사용하게 되면 빌드시 미리 page를 구성하여 클라이언트에게 보여주기 때문에 초기로딩속도가 빠르다는 장점이있습니다.
+그러나 getStaticProps을 사용하여 빌드한 경우에는 이후 데이터 수정이 불가하기 때문에 클라이언트 요청에 따라 응답내용이 달라지는
+페이지에선 사용하지 못합니다.
+
+3. getStaticPaths
+
+getStaticPaths는 SSG를 활용하여 페이지를 구성할 경우 동적라우팅을 위해 사용되는 기능입니다.
+
+Next.js는 자체적으로 동적라우팅기능을 제공하고 있으므로 getStaticProps를 사용하여 정적페이지를 구성할 경우
+이러한 페이지의 동적라우팅경로를 getStaticPaths를 사용하여 지정할 수 있습니다.
+
+4. getServerSideProps
+
+getServerSideProps는 SSR을 위해 지원되는 기능입니다.
+SSR이란 클라이언트의 요청이 있을 경우마다 서버에서 그 요청에 따른 HTML을 작성하여 보내주는 방식입니다.
+따라서 SSG와 달리 항상 최신 데이터를 유지할 경우 SSR을 사용합니다.
+
+getServerSideProps는 클라이언트의 요청이 있는 경우에 HTML을 작성하여 보내주기 때문에 SSG방식보다 로딩속도가 느리고,
+한번 빌드된 페이지도 매 요청시 다시 실행되어 제공된다는 단점이 존재합니다.
+
+## **코드스플리팅**
+
+Next.js 는 dynamic import기능을 지원하는데 이를 사용하면 모듈을 빌드시가 아닌 런타임에 불러오므로 로딩시간을 줄일 수 있습니다.
+
+dynamic import을 사용하지 않는경우에는 클라이언트가 요청한 페이지에서 클라이언트가 사용하지 않을 컴포넌트도 한꺼번에 로드되기 때문에
+초기 로딩시간이 느려질 수 있습니다.
+
+그러나 dynamic import을 사용하면 마치 CSR처럼 클라이언트가 요청할 때에멘 해당 컴포넌트가 로드되기 때문에 초기로딩시간이 감축되는 효과가 나타납니다.
+
+## **Next.js 작동방식**
+
+기존의 React의 경우에는 CSR방식을 사용하여 서버에서 빈 HTML을 클라이언트측에 넘겨주므로 검색엔진 최적화에 좋지 못하다는 단점이 있습니다.
+
+Next.js는 기본적으로 pre-rendering을 지향합니다.
+pre-rendering이란 기존의 CSR방식과는 달리 서버에서 미리 HTML을 구성하여 클라이언트측에 제공합니다. 따라서 검색엔진최적화에 효과적입니다.
+
+Next.js의 작동순서는 다음과 같습니다.
+
+1. \_app.tsx파일이 실행됩니다.
+
+\_app.tsx는 전체페이지 레이아웃과 같이 모든 페이지에 공통으로 들어갈 내용이 포함되어있습니다.
+\_app.tsx가 Props로 받는 Component는 클라이언트가 요청한 페이지이고 ,
+pageProps는 getInitialProps, getStaticProps, getServerSideProps를 통해 받은 props를 의미합니다.
+\_app.tsx에 Content가 존재하면 이들을 먼저 실행하고 HTML의 body부분으로 구성합니다.
+
+2. 클라이언트측에서 요청한 Page Component가 렌더링됩니다.
+
+3. \_document.tsx가 실행됩니다.
+
+\_document.tsx에는 static HTML을 구성하기위해 \_app.tsx에서 구성한 HTML의 body가 어떤 형태로 들어갈지 구성합니다.
+또한 공통적으로 사용될 <head>나 <body>내용들을 작성합니다.
+
 ## **리엑트 프레임워크**
 
 1. gatsby
