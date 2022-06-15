@@ -95,4 +95,46 @@ WHERE TABLE.COL1 = TABLE2.COL1(+)
 WHERE TABLE.COL1(+) = TABLE2.COL1
 ```
 
--
+## **9장**
+
+- 서브쿼리는 다음과 같이 사용된다
+
+```
+SELECT column FROM table WHERE (SELECT column FROM table WHERE~)
+```
+
+- 특수한 경우를 제외하고 서브쿼리에서는 ODER BY절을 사용할 수 없다.
+
+### **단일행 서브쿼리**
+
+- 실행 결과가 단 하나의 행으로 나오는 서브쿼리다.
+- 주로 연산자(>,<,=)와 함께 사용된다.
+
+### **다중행 서브쿼라**
+
+- 실행 결과 여러행이 나오는 서브쿼리다
+- IN, ANY,SOME,ALL,EXISTS와 같은 다중행 연산자와 사용한다.
+
+```
+- IN : 메인쿼리의 데이터가 서브쿼리의 결과 중 하나라도 일치하면 true
+- ANY & SOME : 메인쿼리의 조건식을 만족하는 서브쿼리의 결과가 하나 이상이면 true
+- ALL : 메인쿼리의 조건식을 서브쿼리의 결과 모두가 만족하면 true
+- EXISTS : 서브쿼리의 결과가 존재하면 true
+```
+
+### **다중열 서브쿼리**
+
+- 서브쿼리의 SELECT절에 비교할 데이터를 여러 개 지정하는 방식이다.
+
+### **WITH절**
+
+- 별칭을 정하는 경우 다음과 같이 사용할 수 있다.
+
+```
+WITH
+E10 AS (SELECT* FROM EMP WHERE DEPTNO =10),
+D AS (SELECT * FROM DEPT)
+SELECT E10.NAME, E10.SAL, D.NAME, D.LOC
+FROM E10, D
+WHERE E10.NUM = D.NUM
+```
