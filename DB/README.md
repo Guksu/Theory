@@ -95,7 +95,7 @@ WHERE TABLE.COL1 = TABLE2.COL1(+)
 WHERE TABLE.COL1(+) = TABLE2.COL1
 ```
 
-## **9장**
+# **9장**
 
 - 서브쿼리는 다음과 같이 사용된다
 
@@ -138,3 +138,30 @@ SELECT E10.NAME, E10.SAL, D.NAME, D.LOC
 FROM E10, D
 WHERE E10.NUM = D.NUM
 ```
+
+# **10장**
+
+- 날짜 데이터를 입력시 TO_DATE함수를 사용하는것이 좋다
+
+```
+INSERT INTO TABEL (COL1) VALUES TO_DATE(`2022-05-25`,`YYYY-MM-DD`)
+```
+
+- 현재날짜를 입력할 경우 SYSDATE를 사용하면된다.
+- INSERT문에서 서브쿼리를 사용할 때 VALUES절은 사용하지 않는다.
+
+```
+INSERT INTO TABLE (COL1,COL2)
+SELECT COL1, COL2
+FROM TABLE
+WHERE ~
+```
+
+# **11장**
+
+- 트랜잭션이란 더 이상 분할할 수 없는 최소 수행 단위를 뜻한다.
+- 트랜잭션은 하나의 트랜잭션 내에 있는 여러 명령어를 한 번에 완료하거나 수행하지 않는다.(ALL OR NOTNING)
+- TCL을 실행할 때 기존 트랜잭션이 끝난다.
+- ROLLBACK; 명령어를 통해 트랜잭션을 취소시킨다.
+- COMMIT;으로 작업을 반영한다.
+- 하나의 세션에서 조작중인 데이터는 트랜잭션이 완료되기 전 까지 다른 세션에서 조작할 수 없다. 이러한 상태를 LOCK이라한다.
