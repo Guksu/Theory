@@ -133,5 +133,22 @@ ol {
 - vw와 vh는 viewport를 기준으로 적용된다.
 - vmax와 vmin을 사용하여 가로 세로 중 큰것 혹은 작은것을 기준으로 결정할 수 있다.
 - calc(50% +50px)으로 산수식으로 결정할 수 있다.
+
+```
+[margin]
 - margin의 경우 자식요소가 부모요소에 상관없이 적용될 수 있으므로 조심해야한다.
 - block의 경우 , 위 아래가 margin이 있는경우 더 큰쪽이 적용된다.
+- margin :auto 너비가 지정된 block의 가로 방향의 남은 공간을 채운다.
+```
+
+- overflow는 자식요소가 부모요소보다 높이나 너비가 큰 경우 사용한다.
+- box-sizing이 content-box인 경우 width,height는 border가 포함되지 않지만, border-box일 경우 border도 포함되어 계산된다.
+
+```
+[position]
+- static은 요소의 위치를 지정하지 않음
+- relative 원래 위치를 기준으로 움직인다.(원래 위치는 고정된 상태)
+- absoulte는 맨 위의 부모를 기준으로 움직인다.(원래 위치는 사라짐)
+- fixed는 veiwport를 기준으로 고정된다.
+- sticky는 요소가 고정될 위치를 지정해줄 수 있다.
+```
