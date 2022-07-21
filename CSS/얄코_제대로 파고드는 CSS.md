@@ -152,3 +152,8 @@ ol {
 - fixed는 veiwport를 기준으로 고정된다.
 - sticky는 요소가 고정될 위치를 지정해줄 수 있다.
 ```
+
+```
+ <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+ 위 코드를 입력해줘야 반응형웹에서 viewport가 올바르게 적용된다.
+```
