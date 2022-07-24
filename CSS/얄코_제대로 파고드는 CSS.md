@@ -157,3 +157,6 @@ ol {
  <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
  위 코드를 입력해줘야 반응형웹에서 viewport가 올바르게 적용된다.
 ```
+
+- verticle-align은 inline속성에서 적용된다.
+- transition 속성은 CSS값이 달라질 경우 어떤 효과로 보여질 지 지정한다.(속성 , 지속시간, 시간함수 , 지연시간 순)
