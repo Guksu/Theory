@@ -106,3 +106,7 @@ function DogPhoto({ breed }) {
 - 위의 경우 1초마다 쿼리를 보내 server와 동기화 시킨다.
 
 - refetch는 특정 액션이 발생하면 쿼리 결과를 갱신한다.
+
+---
+
+# **기초**
