@@ -17,14 +17,57 @@
 
 6. 파싱도중 Script태그를 만나면 JS를 먼저 로드하고 파싱하고 실행한다.
 
+## **비동기**
+
+- 비동기는 동시의 개념이 아닌 순서의 문제다.
+- promise와 process.nextTick은 콜백큐의 마이크로에 들어가고 나머지는 매크로에 들어간다. 마이크로와 매크로에 동시에 작업이 들어가면 마이크로가 먼저 콜스택에 쌓인다.
+
+```
+const p = new Promise((resolve,reject)=>{
+    console.log("이 부분은 동기")
+})
+
+console.log("두번째")
+
+new Promise의 함수는 동기로 작동한다.
+
+따라서 위의 코드를 실행하면
+"이 부분은 동기"
+"두번쨰"
+순으로 반환 받는다.
+```
+
 ## **Promise**
 
-- 비동기처리를 위해 사용되는 패턴이며 Promise는 생성자 함수를 통해 인스턴스화하며 비동기처리에 성공하면 resolve 메소드를 호출하여 비동기 처리 결과를 메소드로 전달한다.
+- 프로미스는 쉽게 얘기하면 결과값을 나중에 원할 때 결과값을 사용할 수 있다.
+- catch는 then에서 발생한 오류도 잡아낸다.
+
+```
+const a = axios.get()
+const b = axios.get()
+const c = axios.get()
+const d = axios.get()
+
+promise.all([a,b,c,d]).then((result)=>{}).catch((error)=>{})
+
+promise.all의 경우 하나의 promise만 에러가 발생하면 모두 작동이 중단된다는 단점이 있다.
+
+이러한 단점을 해결하기 위해 promise.allSettled를 사용한다.
+
+promise.allSettled([a,b,c,d]).then((result)=>{}).catch((error)=>{})
+
+promise.allSettled는 에러가 발생하지 않은 부분은 then에서 활용할 수 있다.
+
+```
+
+- 비동기처리를 위해 사용되는 패턴이며 Promise는 생성자 함수를 통해 인스턴스화하며 비동기처리에 성공하면 resolve 메소드를 호출하여 비동기 처리 결과를 메소드로 전달한다.(resolve는 return의 개념)
 - 비동기 처리에 실패하면 reject메소드를 호출하여 에러메시지를 메소드로 전달한다.
 
-## **Promise와 async / await 차이점**
+## **Promise와 async / await**
 
 - Promise는 .catch()문을 통해 에러 핸들링이 가능하지만 async/await는 try-catch()를 활용해야한다.
+- Promise의 then은 await이다.
+- async 함수는 첫번째 await 직전 까지만 동기부분으로 끝나고(콜스택으로 넘어감) 나머지는 비동기로 넘어간다.(콜백큐)
 
 ## **JS 타입**
 
@@ -46,9 +89,12 @@
 
 - 함수 실행이 마무리되면 해당 함수 컨텍스트는 사라지고 페이지가 종료되면 전역 컨텍스트가 사라진다.
 
+- for문은 반복문을 돌 시 스코프가 계속 생긴다.
+
 ## **호이스팅**
 
 - 코드가 실행하기 전 변수선언 / 함수선언이 해당 스코프의 최상단으로 끌어 올려지는 현상
+- 화살표함수는 호이스팅되지 않는다.
 
 ```
 console.log(a)
@@ -72,11 +118,11 @@ consol.log("hi")
 
 ## **클로저**
 
--https://velog.io/@proshy/JS%ED%81%B4%EB%A1%9C%EC%A0%B8closure%EC%99%80-%ED%81%B4%EB%A1%9C%EC%A0%B8%EC%9D%98-%EC%82%AC%EC%9A%A9-%EC%98%88%EC%A0%9C
+- https://velog.io/@proshy/JS%ED%81%B4%EB%A1%9C%EC%A0%B8closure%EC%99%80-%ED%81%B4%EB%A1%9C%EC%A0%B8%EC%9D%98-%EC%82%AC%EC%9A%A9-%EC%98%88%EC%A0%9C
 
 ## **This**
 
-- JS의 this는 다른 언어와 다르게 그 값이 런타임에 결정된다.
+- JS의 this는 다른 언어와 다르게 그 값이 런타임(호출)에 결정된다.
 - 일반 함수의 this 는 전역(window)를 가르키며 화살표 함수의 this는 상위 스코프의 this를 가르킨다.
 - call함수는 this를 바인딩하여 함수를 호출하며 두번째 인자를 하나씩 넘긴다.
 - apply함수는 this를 바인딩하면서 함수를 호출하며 두번째인자는 배열이다.
