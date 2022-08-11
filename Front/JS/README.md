@@ -222,3 +222,8 @@ target.addEventListener('이벤트', 콜백 함수, {capture:ture});
 ```
 
 - 위의 코드로 이벤트 캡쳐를 사용할 수 있다.
+
+## **Popup**
+
+- window.open함수를 사용하여 팝업을 띄울 수 있지만 주소창을 없애지는못한다.
+- iframe을 사용할 경우 addevetLisner로 message를 추가하면 부모창과 자식창과 데이터를 교환할 수 있다
