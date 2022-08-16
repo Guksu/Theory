@@ -53,3 +53,7 @@
 
 - Procedure로 CRUD함수를 만들경우 개발의 효율성이 높아진다.
 - Procedure을 사용하면 반복적인 Query문을 간단하게 함수호출로 대체할 수 있다.
+
+# **ORM**
+
+- DB는 2차원 배열이므로 TABLE[0][1] 형식으로 컬럼을 가져와야하지만 ORM을 사용해서 TS Interface처럼 table.name처럼 MAPPING시키는것을 ORM이라한다.
