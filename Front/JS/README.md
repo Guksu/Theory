@@ -26,7 +26,6 @@
 const p = new Promise((resolve,reject)=>{
     console.log("이 부분은 동기")
 })
-
 console.log("두번째")
 
 new Promise의 함수는 동기로 작동한다.
