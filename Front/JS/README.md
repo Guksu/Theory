@@ -66,7 +66,30 @@ promise.allSettled는 에러가 발생하지 않은 부분은 then에서 활용�
 
 - Promise는 .catch()문을 통해 에러 핸들링이 가능하지만 async/await는 try-catch()를 활용해야한다.
 - Promise의 then은 await이다.
+- await는 반드시 Promise함수에서만 사용 가능하다.
 - async 함수는 첫번째 await 직전 까지만 동기부분으로 끝나고(콜스택으로 넘어감) 나머지는 비동기로 넘어간다.(콜백큐)
+- async 함수는 항상 Promise를 반환한다.
+
+```
+async a()=>{
+    return "hi"
+}
+a.then(result=>console.og("hi"))
+```
+
+- for await를 사용하여 resolve된 프로미스들을 반복문처럼 변수에 담을 수 있다.
+- for await(변수 of 프로미스배열)
+
+```
+const a = Promise.resolve("1")
+const b = Promise.resolve("2")
+
+(async ()=>{
+    for await (promise of [a, b]){
+        console.log(promise)
+    }
+})();
+```
 
 ## **JS 타입**
 
@@ -122,10 +145,18 @@ consol.log("hi")
 ## **This**
 
 - JS의 this는 다른 언어와 다르게 그 값이 런타임(호출)에 결정된다.
-- 일반 함수의 this 는 전역(window)를 가르키며 화살표 함수의 this는 상위 스코프의 this를 가르킨다.
 - call함수는 this를 바인딩하여 함수를 호출하며 두번째 인자를 하나씩 넘긴다.
 - apply함수는 this를 바인딩하면서 함수를 호출하며 두번째인자는 배열이다.
 - bind함수는 this가 바인딩 된 새로운 함수를 리턴한다.
+
+```
+funtion(){
+    this.~~   //funtion내부를 지칭
+}
+()=>{
+    this.~~  //상위 스코프를 지칭
+}
+```
 
 ## **ES6 추가된 스펙**
 
