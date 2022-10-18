@@ -124,3 +124,82 @@ fs.writeFile("./파일경로(이름)","내용입력")
 - 버퍼 : 일정한 크기로 모아두는 데이터 / 일정한 크기가 되면 한번에 처리
 - 스트림 : 데이터 흐름 / 일정한 크기로 나눠서 여러번에 걸쳐서 처리
 - 스트림 방식이 메모리 사용이 적어 효율적이다.
+
+# **HTTP**
+
+```
+const http = require("http")
+http.createServer((req,res)=>{
+    //해당 코드로 http 서버를 만들 수 있다.
+    res.writeHead(200,{"Content-Type:"text/html; charset=utf-8"})
+    res.writeHead(200,{"Set-Cookie:"cookie=good"})
+    res.write("<p>hello</p>")
+    res.end
+}).listen(8080,()=>{
+    conssole.log("서버실행")
+})
+
+```
+
+- 기본적으로 https는 434포트가 적용되며 http는 80번 포트가 적용된다.(해당 포트는 생략되어 보여짐)
+
+- HTTPS를 사용하는 경우 다음의 코드를 추가해야한다.
+
+```
+const https = requre("https")
+const fs = require("fs")
+
+htpps.createServer({
+    // readFileSync를 사용하여 동기식으로 인증서를 호출
+    cert:fs.readFileSync("도메인 인증서 경로"),
+    key:fs.readFileSync("도메인 비밀키 경로"),
+    ca:[
+        fs.readFileSynce("상위 인증서 경로"),
+        fs.readFileSynce("상위 인증서 경로"),
+    ],
+},(req,res)=>{
+        res.writeHead(200,{"Content-Type:"text/html; charset=utf-8"})
+        res.writeHead(200,{"Set-Cookie:"cookie=good"})
+        res.write("<p>hello</p>")
+        res.end
+}
+).listen(8080,()=>{
+    conssole.log("서버실행")
+})
+```
+
+# **cluster**
+
+- 싱글스레드인 노드가 CPU코어를 모두 사용하게해준다(기본은 하나만 사용)
+- 단 , 컴퓨터자원(메모리,세션)은 공유 못 함
+
+```
+const cluster = rquire("cluster")
+const numCPUs = require("os").cpus().length
+
+if(cluster.isMaster){
+    console.log(`마스터 프로세스 아이디: ${process.pid}`)
+    //CPU 개수만큼 워커를 생산
+    for(let i =0;, i<numCPUs; i++){
+        cluster.fork()
+    }
+
+    //워커가 종료된 경우
+    cluster.on("exit",(worker,code,signal)=>{
+        console.log(`${worker.process.fid}번 워커가 종료됨`)
+        cluster.fork();
+    })
+}else{
+    // 워커들이 포트에서 대기
+    http.createServer((req,res)=>{
+    //해당 코드로 http 서버를 만들 수 있다.
+    res.writeHead(200,{"Content-Type:"text/html; charset=utf-8"})
+    res.writeHead(200,{"Set-Cookie:"cookie=good"})
+    res.write("<p>hello</p>")
+    res.end
+}).listen(8080,()=>{
+    conssole.log(`${process.pid}번 워커 실행)
+})
+
+}
+```
