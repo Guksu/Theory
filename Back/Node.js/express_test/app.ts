@@ -2,7 +2,11 @@ import express, { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import multer from "multer";
+import path from "path";
+import dotenv from "dotenv";
 
+dotenv.config(); //process.env를 사용하기 위해 필요하다.
 const app = express();
 
 app.set("port", 3000);
@@ -45,6 +49,25 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {});
 
 app.get("/about/:params", (req: Request, res: Response, next: NextFunction) => {
   res.send(`hello ${req.params.params}`);
+});
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination(req, file, done) {
+      done(null, "saveImage/"); //업로드 파일 저장경로
+    },
+    filename(req, file, done) {
+      const ext = path.extname(file.originalname);
+      done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+    },
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
+
+app.get("/image/upload", (req: Request, res: Response, next: NextFunction) => {
+  // upload.array  하나의 폼 이름에 배열의 파일이 들어가는 경우
+  // upload.single 하나의 파일
+  // upload.fields  각기 다른 여러파일 업로드 ex) upload.fields([{img:"img1"},{img:"img2"}])
 });
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
