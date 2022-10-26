@@ -203,3 +203,9 @@ if(cluster.isMaster){
 
 }
 ```
+
+# **res**
+
+- res.send()는 넣어진 arg에 따라 Content-Type이 자동적으로 정해진다.
+- res.json()은 json형태로 변환후 Content-Type을 apllication/json으로 설정하고 res.send()를 호출한다.
+- res.end()는 보낼 데이터가 없는 경우 사용한다.
