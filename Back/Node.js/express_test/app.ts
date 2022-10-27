@@ -5,12 +5,14 @@ import session from "express-session";
 import multer from "multer";
 import path from "path";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config(); //process.env를 사용하기 위해 필요하다.
 const app = express();
 
 app.set("port", 3000);
 
+app.use(cors());
 app.use(morgan("dev"));
 // app.use(morgan("combined"));   배포시 combined로 더 정확한 정보를 가져온다
 app.use(cookieParser()); // get요청이 오면 uri변수들이 파싱되어 req.cookies객체에 저장된다.
