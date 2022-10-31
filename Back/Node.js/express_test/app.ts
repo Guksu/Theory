@@ -12,7 +12,13 @@ const app = express();
 
 app.set("port", 3000);
 
-app.use(cors());
+app.use(
+  cors({
+    //해당 코드는 선택사항
+    origin: "locallhost:4000", // 4000번 포트에서만 접속 허용
+    credentials: true, //쿠키도 전송 허용 , 이 경우 origin:true로 설정해줘야한다
+  })
+);
 app.use(morgan("dev"));
 // app.use(morgan("combined"));   배포시 combined로 더 정확한 정보를 가져온다
 app.use(cookieParser()); // get요청이 오면 uri변수들이 파싱되어 req.cookies객체에 저장된다.
