@@ -6,6 +6,7 @@ import multer from "multer";
 import path from "path";
 import dotenv from "dotenv";
 import cors from "cors";
+import { Server } from "socket.io";
 
 dotenv.config(); //process.env를 사용하기 위해 필요하다.
 const app = express();
@@ -83,6 +84,14 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   res.send("여기는 에러 !");
 });
 
-app.listen(app.get("port"), () => {
+// app.listen(app.get("port"), () => {
+//   console.log("3000번 포트에서 실행");
+// });
+
+//웹 소켓 사용시 변경되는 부분
+
+const server = app.listen(app.get("port"), () => {
   console.log("3000번 포트에서 실행");
 });
+
+new Server(server);
