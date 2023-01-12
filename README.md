@@ -1,4 +1,4 @@
-# <기술면접 정리>
+# <간단요약>
 
 ## **객체지향 프로그래밍(Object Oriented Programming)**
 
