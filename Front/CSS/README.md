@@ -36,3 +36,15 @@ flex : 1 1 0
 ## **CSS in CSS / CSS in JS**
 
 - https://www.samsungsds.com/kr/insights/web_component.html
+
+## 레이아웃
+
+- 렌더링 시 , 레이아웃의 크기를 계산할 때 Global 레이아웃은 전체를 한 번에 레이아웃하지만, 윈도우 사이즈가 변경되거나 폰트가 변경되는 경우에는 다시 계산한다.
+
+- 크게 JS -> Layout -> Paint -> Composite 과정으로 화면이 그려진다.
+
+  1.  Layout : width, height, font등이 변경
+  2.  Paint : color, backgrount등이 변경
+  3.  Composite : opacity, transform등이 변경
+
+  - 따라서 애니메이션을 사용하는 경우 transform이나 webanimation을 사용해야 좋다.

@@ -7,9 +7,9 @@
 
 1. 사이트에 접속할 경우 DNS(실제 서버가 어디에 있는지 알 고 있는 서버 / Domain Name System)가 연결해준다.
 
-2. index.html을 서버에서 클라이언트로 보내주고 브라우저는 텍스으로 이루어진 index.html파일을 파싱한다.
+2. index.html을 서버에서 클라이언트로 보내주고 브라우저는 텍스트로 이루어진 index.html파일을 파싱한다.(컴퓨터는 텍스트로 이루어진형태를 인식불가.)
 
-3. 파싱을하면서 DOM트리를 만들고 중간에 CSS요청이 발생하면 res / req 과정을 거치고 CSS를 파싱한다.
+3. 파싱을하면서 DOM(Document Object Model)트리를 만들고 중간에 CSS요청이 발생하면 res / req 과정을 거치고 CSS를 파싱한다.
 
 4. CSS파싱이 끝나면 다시 html을 읽으면서 DOM트리를 완성한다.
 
@@ -97,9 +97,14 @@ const b = Promise.resolve("2")
 
 - 원시타입은 boolean / string / number / undefiend / null / symbol이 존재한다.
 
+- 원시값을 변수에 저장하면 메모리 공간에는 실제 값이 저장된다. 그러나 객체는 변경 가능하므로 값이 저장된 메모리 공간의 주소가 변수에 저장된다.
+- 따라서 원시 값을 다른 변수에 할당하면 원본 값이 복사되어 전달되며, 객체의 경우에는 해당 메모리 주소가 전달된다.(객체는 참조에 의한 전달이라 한다.)
+
 - undefiend은 값이 정의되지 않은 것 / null은 값이 비어있는 것
 
 - JS의 객체는 key로 문자형만 받을 수 있다. Map의 경우엔 다양한 타입을 key값으로 받을 수 있다.
+
+- js에서 false로 판된되는값을 falsy라 한다. null, 0, undefiend, -0, NaN, false, 빈 문자열이 이에 해당된다.
 
 ## **실행 컨텍스트(Execution Context)**
 
@@ -297,4 +302,19 @@ funtion sum(a){
 ```
 console.log(1+1+"1")   // 21
 console.log("1"+1+1)   // 111
+```
+
+## **event.target**
+
+- event.target : 부모로부터 이벤트가 위임되어 발생하는 자식의 위치(이벤트 버블링에 의해 발생)
+- event.currentTarget : 이벤트가 부착된 부모의 위치
+
+```
+<div onClick={alert("heare")}>
+    <span>자식</span>
+</div>
+
+자식을 클릭해도 alert가 발생하는데 이는 이벤트 버블이에 의해 발생한다.
+이 경우, onClick 이벤트의 event.target은 <span>자식</span>이며
+event.currentTarget는 <div></div>전체이다.
 ```
