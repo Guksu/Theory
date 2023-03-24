@@ -1,3 +1,9 @@
+# 3월 이후로 velog로 이동했습니다.
+
+https://velog.io/@yung315
+
+<br/>
+
 # 프론트엔드
 
 - [React](./Front/React/)
